@@ -1,0 +1,33 @@
+Page({
+  data:{
+    showView:false,
+    list:[
+      {
+        img:"https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/images/home/write_/%E5%86%99%20(1).png?sign=3a95b0016f0d55436f90296d16db3651&t=1618922704",
+        title:"写动态"
+      },
+      {
+        img:"https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/images/home/write_/%E5%86%99%20(1).png?sign=3a95b0016f0d55436f90296d16db3651&t=1618922704",
+        title:"写动态"
+      },
+      {
+        img:"https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/images/home/write_/%E5%86%99%20(1).png?sign=3a95b0016f0d55436f90296d16db3651&t=1618922704",
+        title:"写动态"
+      },
+      {
+        img:"https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/images/home/write_/%E5%86%99%20(1).png?sign=3a95b0016f0d55436f90296d16db3651&t=1618922704",
+        title:"写动态"
+      }
+    ]
+  },
+  onLoad:function(options){
+  // 生命周期函数--监听页面加载
+  showView:(options.showView=="true"?true:false)
+  }
+  ,onChangeShowState:function(){
+  var that=this;
+  that.setData({
+   showView:(!that.data.showView)
+  })
+  }
+ })

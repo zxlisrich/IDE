@@ -1,0 +1,18 @@
+.login{
+  display: flex;
+  flex-direction: column;
+  margin: 50rpx 30rpx;
+  
+}
+.account{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2rpx solid black;
+}
+.loginLab{
+  margin-right: 20rpx;
+}
+
+.loginBtn{
+  margin-top: 50rpx;
+}

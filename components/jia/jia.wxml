@@ -1,0 +1,5 @@
+<view class="write">
+  <view>
+    <view  bindtap="bindTap" class = "jiahao"hover-class = "{{true}}">{{showView?'×':' +'}}</view>
+  </view>
+</view>

@@ -1,0 +1,198 @@
+<view>
+  <view class="index_swiper">
+    <!-- <image src="../../icons/beijing1-1.png"></image> -->
+    <navigator class="search_input" hover-class="other-navigator-hover" url="/pages/search/search">
+      <text>搜索</text>
+    </navigator>
+    <view class="write">
+      <view class="jia">
+        <jia></jia>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="index_cakes">
+    <view>
+      <navigator hover-class="other-navigator-hover" url="/pages/question_center/question_center">
+        <image src="{{cateList[0].imgname}}"></image>
+        <!-- <text>{{cateList.title}}</text> -->
+      </navigator>
+    </view>
+    <view>
+      <navigator hover-class="other-navigator-hover">
+        <image src="{{cateList[1].imgname}}"></image>
+        <!-- <text>{{cateList.title}}</text> -->
+      </navigator>
+    </view>
+    <view>
+      <navigator url="../../pages/clock/clock" hover-class="other-navigator-hover">
+        <image src="{{cateList[2].imgname}}"></image>
+        <!-- <text>{{cateList.title}}</text> -->
+      </navigator>
+    </view>
+  </view>
+  <!-- 回头放图片进来 -->
+
+  <view class="home_taps ">
+    <Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange">
+      <block wx:if="{{tabs[0].isActive}}">
+        <view class="first_tap">
+          <navigator wx:for="{{hot_message}}" hover-class="other-navigator-hover">
+            <view class="recommend">
+              <view class="hot_img_title">
+                <view class="hot_img">
+                  <image style="margin-left:20rpx;  width:35rpx; height:35rpx" src="{{hot_img[item.rank-1].img}}">
+                  </image>
+                </view>
+                <view class="shenglue shenglue1 hot_title">{{item.title}}</view>
+              </view>
+              <view class=" contents_ ">
+                <view style="margin: auto 20rpx">{{item.dznum}}点赞</view>
+                <view style="margin-right: 20rpx">{{item.plnum}}评论</view>
+                <view>{{item.likes}}收藏</view>
+                <view class="hot_num_message">
+                  <view>
+                    <image style="  margin-left:300rpx; margin-right:10rpx; width:35rpx; height:35rpx"
+                      src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/images/home/hot_img/huo1.2%20(1).png?sign=c1b8b82fbd9979c2425a66b5b16191b6&t=1619508396">
+                    </image>
+                  </view>
+                  <view style="margin-right : 35rpx">{{item.hot_num}}w</view>
+                </view>
+              </view>
+
+
+
+              <!-- 点赞 评论 收藏 === d p s -->
+            </view>
+          </navigator>
+        </view>
+      </block>
+      <block wx:elif="{{tabs[1].isActive}}">
+        <view class="second_tab">
+          <view class="dongtai">
+            <!-- <view class="friends_dongtai">
+          好友动态
+        </view> -->
+            <view class="contents" wx:for="{{dongtai_data}}">
+              <view class="dt_button">
+                <view class="page__bd">
+                  <view class="weui-slidecells">
+                    <mp-slideview extClass="{{true}}" class="slideview_" buttons="{{slideButtons}}" icon="{{true}}"
+                      bindbuttontap="slideButtonTap">
+                      <view class="weui-slidecell">
+                        <navigator class="contents_title shenglue shenglue1" url="/pages/dongtaicenter/dongtaicenter"
+                          hover-class="other-navigator-hover">
+                          <text>{{item.discussion_title}}</text></navigator>
+                        <navigator class="user_message" url="/pages/personal_center/personal_center">
+                          <image class="user_head" src="{{item.avatar_url}}"></image>
+                          <view class="user_name"><text>{{item.nick_name}}</text></view>
+                        </navigator>
+                        <navigator class="contents_text " url="/pages/dongtaicenter/dongtaicenter">
+                          <text class=" shenglue shenglue2">{{item.contents}}</text></navigator>
+                        <view class="contents_">
+                          <view style="margin: auto 20rpx">{{item.like_num}}点赞</view>
+                          <view style="margin-right: 20rpx">{{item.plnum}}评论</view>
+                          <view style="margin-right: 20rpx">{{item.collection_num}}收藏</view>
+                        </view>
+                      </view>
+                    </mp-slideview>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:elif="{{tabs[2].isActive}}">
+        <!-- <view class="cu-bar bg-white solid-bottom {{isCard?'margin-top':''}}"
+          style="margin: 0rpx 30rpx; border-radius: 12rpx; position: relative; left: 0rpx; top: 20rpx">
+          <view class='action'>
+            <text class='cuIcon-titles text-orange '></text> 根据做题内容推荐题集
+          </view>
+          <view class='action'>
+            //<switch class='sm' checked='{{isCard}}' bindchange='isCard'></switch> 
+          </view>
+        </view> -->
+        <view class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+          <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+            <view class="cu-item arrow" wx:for="{{p_dir}}" wx:for-index="index" bindtap="url_dir"
+              data-title="{{item.title}}">
+              <view class="content">
+                <text class="cuIcon-github text-grey">{{index+1}}</text>
+                <text class="text-grey title-color">{{item.title}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:elif="{{tabs[3].isActive}}">
+        <view scroll-y class="scrollPage " style="height:70vh; margin-top:65rpx">
+          <view class="card_position" style="height:300rpx">
+            <view class='nav-list ' wx:for="{{elements}}" style="width:50%;">
+              <card elements="{{item}}"></card>
+            </view>
+            <view class='cu-tabbar-height'></view>
+          </view>
+        </view>
+      </block>
+      <block wx:elif="{{tabs[4].isActive}}">
+        <view class="sort">
+          <view class="top">
+            <view class="logo">
+              <image
+                src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/guanyuwomen1.png?sign=0235d515d7a3b843abc91174fbde10c6&t=1619699768">
+              </image>
+            </view>
+            <view class="sort_title text-black">积分排名</view>
+          </view>
+          <view class="top_three">
+            <navigator class="one">
+              <view class="one_img">
+                <image
+                  src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/user_head_img_test/406ad122c12de86cdc0ac6c8407b895.jpg?sign=7a7c9be0bc96042b12ba241edbd7c218&t=1619777321">
+                </image>
+              </view>
+              <view class="top_three_text text-orange text-center text-shadow">鲤鱼</view>
+            </navigator>
+            <view class="tow_three">
+              <navigator class="two">
+                <view class="two_img">
+                  <image
+                    src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/user_head_img_test/45ab00ea4afe3e98bb8e08bc04df746.jpg?sign=150cdb33d0f1594d376b4e8bbf962e2e&t=1619777337">
+                  </image>
+                </view>
+                <view class="top_three_text text-orange text-center text-shadow ">烬烬</view>
+              </navigator>
+              <navigator class="three">
+                <view class="three_img">
+                  <image
+                    src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/user_head_img_test/34761c7b2422eef0f68570983f74b5d.jpg?sign=812867553fbf3c48aa33e69a11ee64a5&t=1619777371">
+                  </image>
+                </view>
+                <view class="top_three_text text-orange text-center text-shadow">喜喜</view>
+              </navigator>
+            </view>
+          </view>
+          <view class="top_list">
+            <navigator class="list" wx:for="{{user_sort}}">
+              <view class="rank ">{{item.rank_num}}</view>
+              <view class="list_head_img">
+                <image src="{{item.user_img}}"></image>
+              </view>
+              <view class="list_user_message">
+                <text class="list_name text-orange">{{item.user_name}}</text>
+                <text class="p_num">{{item.ac_num}}积分</text>
+              </view>
+            </navigator>
+            <view class="button_more">
+              <button class="show_more text-black">显示更多</button>
+            </view>
+          </view>
+
+        </view>
+
+      </block>
+    </Tabs>
+  </view>
+</view>

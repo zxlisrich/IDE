@@ -1,0 +1,18 @@
+{
+    "component":true, 
+    "usingComponents": {
+    
+      "Tabs":"../../components/Tabs/Tabs",
+      "mp-slideview":"weui-miniprogram/slideview/slideview",
+      "mp-half-screen-dialog": "weui-miniprogram/half-screen-dialog/half-screen-dialog",
+      "mp-actionSheet": "weui-miniprogram/actionsheet/actionsheet",
+      "SearchInput": "../../components/SearchInput/SearchInput",
+      "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
+      "jia":"../../components/jia/jia",
+      "card":"../../components/card2/card"
+    },
+  
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

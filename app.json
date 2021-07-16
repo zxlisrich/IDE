@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/rank/rank",
+    "pages/partner/partner",
+    "pages/user/user",
+    "pages/dongtaicenter/dongtaicenter",
+    "pages/personal_center/personal_center",
+    "pages/search/search",
+    "pages/test/test",
+    "pages/login/login",
+    "pages/writes/writes",
+    "pages/reg/reg",
+    "pages/my_tiji_center/my_tiji_center",
+    "pages/clock/clock",
+    "pages/question_center/question_center",
+    "pages/reading_history/reading_history",
+    "pages/kaiping/kaiping",
+    "pages/user_collection/user_collection"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f2b48a",
+    "navigationBarTitleText": "在线IDE",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#f2b48a",
+    "backgroundColor": "#fff",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "icons/shouyeg.png",
+        "selectedIconPath": "icons/shouyeo.png"
+      },
+      
+      {
+        "pagePath": "pages/partner/partner",
+        "text": "在线IDE",
+        "iconPath": "icons/IDEg.png",
+        "selectedIconPath": "icons/IDEo.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "icons/wodeg.png",
+        "selectedIconPath": "icons/wodeo.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui":true
+  }
+
+ 
+
+}

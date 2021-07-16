@@ -1,0 +1,49 @@
+.bright789-text{
+  font-size: 40rpx;
+  line-height: 40px;
+  color: #ff0000;
+ }
+
+ .bright789_view_hide{
+  display: none;
+ }
+
+ .bright789_view_show{
+  display: block;
+ }
+ 
+  .jiahao{
+    width: 80rpx ;
+    height: 80rpx;
+    /* text-align: left;s */
+    line-height: 89rpx;
+    font-size: 85rpx;
+    text-align: center;
+    color: 	#f2b48a;
+    font-weight: bold;
+    /* background-color: rgb(139, 169, 185); */
+    
+    box-shadow: 0 0 20rpx rgb(70, 70, 12);
+    /* margin:20rpx auto; */
+    border-radius: 50%;
+  }
+
+ .box_column{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 10rpx; 
+ }
+ .hide_box{
+  position: absolute;
+  bottom: 60%;
+  left: 30%;
+  background-color: #faa46b;
+  color: #fff;
+
+ }
+ .hide_box image{
+   width: 42rpx;
+   height: 42rpx;
+ }

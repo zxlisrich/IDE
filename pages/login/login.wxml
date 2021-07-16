@@ -1,0 +1,17 @@
+<!-- <view class="login">
+  <view class="account">
+    <label class="loginLab">账号:</label>
+    <input class="inputText" placeholder="请输入账号" name="account" bindchange="getAccount" />
+  </view>
+  <view class="account">
+    <label class="loginLab">密码:</label>
+    <input class="inputText" password="true" placeholder="请输入密码" name="pwd" bindchange="getPwd" />
+  </view>
+</view>
+
+<view class="loginBtn">
+  <button class="loginBtn" type="primary" bindtap="login" form-type="submit">登录</button>
+</view> -->
+<button class='btn1' open-type='getUserInfo' bindgetuserinfo='doLogin'>
+  <view>微信登录</view>
+</button>

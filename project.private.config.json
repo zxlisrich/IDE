@@ -1,0 +1,77 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/dongtaicenter/dongtaicenter",
+          "pathName": "pages/dongtaicenter/dongtaicenter",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/test/test",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/choice/choice",
+          "pathName": "pages/choice/choice",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/clock/clock",
+          "pathName": "pages/clock/clock",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/question_center/question_center",
+          "pathName": "pages/question_center/question_center",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/reading_history/reading_history",
+          "pathName": "pages/reading_history/reading_history",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/question_center/question_center",
+          "pathName": "pages/question_center/question_center",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

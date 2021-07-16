@@ -1,0 +1,4 @@
+<!-- 开屏 -->
+<view wx:if='{{kaiping}}'  >
+  <kaiping></kaiping>
+</view>

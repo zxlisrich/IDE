@@ -1,0 +1,126 @@
+<view class="page">
+
+  <view class="UCenter-bg" style="position: relative; left: 0rpx; top: -138rpx">
+    <view wx:if="{{user_info.isLogin}}" class="user_">
+      <!-- <image class="user_bg" src="{{user_message.user_img}}"></image> -->
+      <view class="user_message">
+        <view class="user_msg">
+          <image class="user_icon xuanzhuan" src="{{user_info.avatar_url}}"></image>
+          <view class="user_text">
+            <view class="user_name doudong"><text>{{user_info.nick_name}}</text></view>
+            <!-- <view class="qianming"><text>{{user_message.user_geqian}}</text></view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="no_login" bindtap="getUserProfile">
+      <button type="">登录</button>
+    </view>
+    <image src="cloud://dev-2gzxo1d2dc39c5e3.6465-dev-2gzxo1d2dc39c5e3-1305581356/animation/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+
+  <!-- <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius" style="font-size:45rpx">
+      <navigator class="my_tiji cu-item arrow" id="tiji" bindtap="bindTapmy" hover-class="other-navigator-hover" >
+        <image
+          src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/wodetiji1-4.2.png?sign=cdf44daf0734d35eb641ba8b5b434518&t=1619537886">
+        </image>
+        <view style="padding-right:300rpx">我的题集</view>
+      </navigator>
+      <navigator class="my_colloction cu-item arrow" id="colloction" bindtap="bindTapmy" hover-class="other-navigator-hover">
+        <image
+          src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/wodesoucang1%20(1).png?sign=a1c3aff0e6091c700940b15cc86082a5&t=1619537900">
+        </image>
+        <view style="padding-right:300rpx">我的收藏</view>
+      </navigator>
+      <navigator class="record cu-item arrow" id="record" bindtap="bindTapmy" hover-class="other-navigator-hover">
+        <image
+          src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/liulanjilu1.png?sign=3ee284101e6012919ecea4971a6fcbaa&t=1619537928">
+        </image>
+        <view style="padding-right:300rpx">浏览记录</view>
+      </navigator>
+      <navigator class="my_plan cu-item arrow" id="plan" bindtap="bindTapmy" hover-class="other-navigator-hover">
+        <image
+          src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/zuotijihua1.png?sign=223a4fb9c7d0f0e84a59120f177aea9a&t=1619537954">
+        </image>
+        <view style="padding-right:300rpx">做题计划</view>
+      </navigator>
+      <navigator class="feedback cu-item arrow" hover-class="other-navigator-hover">
+        <image
+          src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/wentifankui1.png?sign=d2d260fed51afee915286323ebfeecc2&t=1619537916">
+        </image>
+        <view style="padding-right:300rpx">问题反馈</view>
+      </navigator>
+      <navigator class="about cu-item arrow" hover-class="other-navigator-hover">
+        <image
+          src="https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/guanyuwomen1.png?sign=bcd771cac4a4342b7520cb54bd5ccfb4&t=1619537941">
+        </image>
+        <view style="padding-right:300rpx">关于我们</view>
+      </navigator>
+    </view> -->
+    <view class="padding flex text-center text-grey bg-white shadow-warp" style="position: relative; left: 0rpx; top: -138rpx">
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-orange">123{{visitTotal}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-medalfill"></text> 排名</view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-blue">133{{starCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-favorfill"></text> 积分</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-green">1{{forksCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-upstagefill"></text> 最强王者</view>
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius" style = "margin-top:-75rpx">
+    <!-- <view class="cu-item arrow">
+      <view class="content" bindtap="CopyLink" data-link="https://github.com/weilanwl/ColorUI">
+        <text class="cuIcon-copy text-grey"></text>
+        <text class="text-grey">我的题集</text>
+      </view>
+    </view> -->
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/logs/logs" hover-class="none">
+        <text class="cuIcon-formfill text-green"></text>
+        <text class="text-grey">日志</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/reading_history/reading_history" hover-class="none">
+        <text class="cuIcon-writefill text-orange"></text>
+        <text class="text-grey">浏览记录</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" bindtap="showQrcode"  url="/pages/user_collection/user_collection" hover-class="none">
+        <text class="cuIcon-likefill text-red"></text>
+        <text class="text-grey">我的收藏</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/test/list" hover-class="none">
+        <text class="cuIcon-edit text-orange"></text>
+        <text class="text-grey">做题计划</text>
+      </navigator>
+    </view>
+    
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-discover text-cyan"></text>
+        <text class="text-grey">问题反馈</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/test/list" hover-class="none">
+        <text class="cuIcon-creativefill text-orange"></text>
+        <text class="text-grey">关于我们</text>
+      </navigator>
+    </view>
+  </view>
+  <view class="cu-tabbar-height" style="position: relative; left: 0rpx; top: -10rpx"></view>
+
+
+  
+</view>

@@ -1,0 +1,11 @@
+<!-- <view class="load-container load">
+  <view class="loader">
+  </view>
+</view>
+<view class="txt">关注公众号“Let编程”,有更多分享！</view> -->
+
+<view class="Gif">
+  <view class="bg-white flex-sub radius shadow-lg">
+    <image src="https://image.weilanwl.com/gif/loading-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
+  </view>
+</view>

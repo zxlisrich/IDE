@@ -1,0 +1,11 @@
+<SearchInput></SearchInput>
+<view class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+    <view class="cu-item arrow" wx:for="{{p_dir}}" wx:for-index="index" bindtap="url_question" data-title="{{item.title}}">
+      <view class="content">
+        <text class="cuIcon-github text-grey" style="width:120rpx; " >{{item.id}}</text>
+        <text class="text-grey title-color">{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+</view>

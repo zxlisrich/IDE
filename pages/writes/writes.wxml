@@ -1,0 +1,24 @@
+<view class="head">
+  <view class='toWrite' bindtap='addImg'>
+    <image src='cloud://dev-2gzxo1d2dc39c5e3.6465-dev-2gzxo1d2dc39c5e3-1305581356/writes/album.png'  />
+
+  </view>
+  <view class="sub">
+    <button size="mini" style="  " bindtap="sub">发布</button>
+  </view>
+</view>
+<view>
+  <textarea class='input_view' maxlength='-1' auto-height='true' bindinput='inputCon' style='width:{{width-20}}px;'
+    value='{{firstCon}}' placeholder='输入标题' bindblur="outBlur" id='0' />
+  <view wx:for="{{dataList}}" style='background-color:white;'>
+    <view class='img_view' style='width:{{width-28}}px;max-height:{{width-28}}px;'>
+      <image style='width:{{width-28}}px;max-height:{{width-28}}px;' src='{{item.pic}}' mode='aspectFill' />
+      
+      <view class="con" style="position: absolute; left: {{width-52}}px;">
+        <icon type='cancel' bindtap='deletedImg' data-index='{{index}}' size='25'></icon>
+      </view>
+    </view>
+    <textarea class='input_view' maxlength='-1' auto-height='true' bindinput='inputCon' style='width:{{width-20}}px;' value='{{item.value}}' placeholder='写点什么...' bindblur="outBlur" id='{{index+1}}'/>
+  </view>
+  <view style='height:45px;width:100%;'></view>
+</view>

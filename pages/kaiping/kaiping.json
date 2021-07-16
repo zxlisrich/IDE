@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "kaiping":"../../components/kaiping/kaiping"
+  }
+}
