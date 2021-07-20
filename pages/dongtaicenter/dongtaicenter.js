@@ -3,6 +3,7 @@ const app = getApp()
 const db = wx.cloud.database();
 let article = {};
 let user_info = {};
+let article_id = "";
 Page({
 
   /**
@@ -36,16 +37,17 @@ Page({
       },
     ],
     contents:{
-      name:"dzw",
+      name:"",
       num:0,
-      dianzan_num:121,
-      pinglun_num:121,
-      share_num:133,
-      shoucang_num:234,
-      user_icon:"https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/images/dongtai/img1.jpg?sign=6ffe874d587fe839f2a06a55f5f3d9eb&t=1618302652",
-      time:"2021-04-12",
-      title:"奥克兰激发了开始就发撒金刚萨勒夫爱上了房间里凯撒的剑法",
-      content:"asdfjk的金发可是劳动纠纷撒旦雷锋精神离开对方撒旦浪费空间森林的砍伐送到房间里啊圣诞快乐积分上的飞机",
+      dianzan_num:0,
+      pinglun_num:0,
+      share_num:0,
+      shoucang_num:0,
+      avatar_url:"",
+      create_time:"",
+      discussion_title:"",
+      contents:"",
+      pictures:[]
      
     },
     StatusBar: app.globalData.StatusBar,
@@ -59,16 +61,36 @@ Page({
     })
   },
 
-  onLoad: function(e){
+  onLoad: function(options){
+    article_id = options.article_id;
+    console.log(article_id);
     app.loadFont();
-    //const {index} = e.detail;
-    let{tabs}= this.data;
-    tabs[0].num = this.data.contents.dianzan_num;
-    tabs[1].num = this.data.contents.pinglun_num;
-    tabs[2].num = this.data.contents.share_num;
-    tabs[3].num = this.data.contents.shoucang_num;
-    this.setData({
-      tabs
+   this.get_article_detail();
+  },
+
+  async get_article_detail(){
+    let that = this
+    await db.collection("user_discussion_data").where({
+      _id:article_id
+    }).get().then(res => {
+      console.log(res);
+      let data = res.data[0];
+      let contents = this.data.contents;
+      contents.nick_name = data.nick_name;
+      contents.avatar_url = data.avatar_url;
+      contents.discussion_title = data.discussion_title;
+      contents.contents = data.contents;
+      contents.create_time = data.create_time;
+      contents.pictures = data.pictures;
+      let{tabs}= that.data;
+      tabs[0].num = that.data.contents.dianzan_num;
+      tabs[1].num = that.data.contents.pinglun_num;
+      tabs[2].num = that.data.contents.share_num;
+      tabs[3].num = that.data.contents.shoucang_num;
+      that.setData({
+        tabs,
+        contents
+      })
     })
   },
 

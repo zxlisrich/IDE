@@ -75,6 +75,12 @@
         {
           "name": "pages/writes/writes",
           "pathName": "pages/writes/writes",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/writes/writes",
+          "pathName": "pages/writes/writes",
           "scene": null
         }
       ]

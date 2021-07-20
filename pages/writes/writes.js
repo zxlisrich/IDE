@@ -1,9 +1,10 @@
-// var Utils = require('../../utils/util.js')
+const  util = require('../../utils/util.js')
 var app = getApp()
 var list = []
 const db = wx.cloud.database();
 let article = {};
 let user_info = {};
+let article_id = "";
 Page({
   data: {
     content: '',
@@ -27,13 +28,13 @@ Page({
 
   sub(){
     this.update_user_data();
-    // wx.navigateTo({
-    //   url: '/pages/dongtaicenter/dongtaicenter',
-    // })
+    
   },
 
   async update_user_data() {
     user_info = app.globalData.user_info;
+    let time = util.formatTime(new Date());
+    article.time = time;
     if(user_info.article == undefined) user_info.article = [];
     await db.collection("user_discussion_data").add({
       data:
@@ -42,7 +43,8 @@ Page({
         avatar_url:user_info.avatar_url,
         discussion_title:article.discussion_title,
         contents:article.contents,
-        pictures:article.pictures
+        pictures:article.pictures,
+        create_time:time
       }
 
     }).then(res => {
@@ -56,6 +58,9 @@ Page({
           article:user_info.article
         },
       }).then(res => {
+      })
+      wx.navigateTo({
+        url: '/pages/dongtaicenter/dongtaicenter?article_id='+res._id,
       })
     })
 
