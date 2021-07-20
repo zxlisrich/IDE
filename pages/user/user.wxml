@@ -1,13 +1,13 @@
 <view class="page">
 
   <view class="UCenter-bg" style="position: relative; left: 0rpx; top: -138rpx">
-    <view wx:if="{{user_info.isLogin}}" class="user_">
+    <view wx:if="{{isLogin}}" class="user_">
       <!-- <image class="user_bg" src="{{user_message.user_img}}"></image> -->
       <view class="user_message">
         <view class="user_msg">
-          <image class="user_icon xuanzhuan" src="{{user_info.avatar_url}}"></image>
+          <image class="user_icon xuanzhuan" src="{{avatar_url}}"></image>
           <view class="user_text">
-            <view class="user_name doudong"><text>{{user_info.nick_name}}</text></view>
+            <view class="user_name doudong"><text>{{nick_name}}</text></view>
             <!-- <view class="qianming"><text>{{user_message.user_geqian}}</text></view> -->
           </view>
         </view>

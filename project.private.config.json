@@ -69,6 +69,12 @@
         {
           "name": "pages/question_center/question_center",
           "pathName": "pages/question_center/question_center",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/writes/writes",
+          "pathName": "pages/writes/writes",
           "scene": null
         }
       ]

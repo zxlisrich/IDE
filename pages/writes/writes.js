@@ -2,6 +2,8 @@
 var app = getApp()
 var list = []
 const db = wx.cloud.database();
+let article = {};
+let user_info = {};
 Page({
   data: {
     content: '',
@@ -18,88 +20,113 @@ Page({
       title: "",
       user_head: "",
       user_name: "",
-      contents: [],
+      contents: '',
       contents_img: []
     }
   },
-  sub() {
+  //sub() {
+  //   let that = this
+  //   const today = new Date();
+  //   const year = today.getFullYear();
+  //   const month = today.getMonth() + 1;
+  //   const day = today.getDate();
+  //   const fileID_list = [];
+  //   //提示用户上传中
+
+  //   //上传成功并跳转页面
+
+  //   //把图片上传到云存储
+  //   this.data.upData.contents_img.forEach((value, index) => {
+  //     // console.log("console"+this.data.upData.contents_img[i])
+  //     wx.showLoading({
+  //       title: '发表中',
+  //     })
+  //     wx.cloud.uploadFile({
+  //       cloudPath: "contents_img/" + year + "/" + month + "/" + day + "/" + new Date().getTime() + '.png',
+  //       filePath: value, // 文件路径
+  //     }).then(res => {
+
+  //       // get resource ID
+  //       console.log("fileID = ", res.fileID)
+  //       fileID_list.push(res.fileID);
+  //       console.log("lenth=", this.data.upData.contents_img.length)
+  //       if (fileID_list.length == this.data.upData.contents_img.length) {
+  //         wx.hideLoading();
+  //         wx.showToast({
+  //           title: '发表成功',
+  //         })
+
+  //         this.data.upData.contents_img = fileID_list
+
+
+  //         /**
+  //          * 把数据存到数据库
+  //          */
+  //         console.log("fileID_list= " + fileID_list)
+  //         console.log("data= " + this.data)
+  //         db.collection("user").add({
+  //           data: {
+
+  //             dzsum: this.data.upData.dzsum,
+  //             likes: this.data.upData.likes,
+  //             plnum: this.data.upData.plnum,
+  //             title: this.data.upData.title,
+  //             user_head: app.globalData.user_head,
+  //             user_name: app.globalData.user_name,
+  //             contents: this.data.upData.contents,
+  //             contents_img: this.data.upData.contents_img,
+
+
+  //           }
+  //         }).then(re => {
+  //           var pages = getCurrentPages()
+  //           pages[pages.length - 2].onLoad()
+  //           console.log("res = " + re)
+  //           wx.switchTab({
+  //             url: '../index/index',
+  //           })
+
+  //         })
+
+  //       }
+  //     }).catch(error => {
+  //       // handle error
+  //     })
+
+  //   })
+
+  // },
+  sub(){
+    this.update_user_data()
+  },
+
+  async update_user_data() {
+    user_info = app.globalData.user_info;
+    console.log("user_info:", user_info);
     let that = this
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-    const fileID_list = [];
-    //提示用户上传中
+    let article_id = "";
+    await db.collection("user_discussion_data").add({
+      data:
+      {
+        nick_name: user_info.nick_name,
+        avatar_url:user_info.avatar_url,
+        discussion_title:article.discussion_title,
+        contents:article.contents,
+        pictures:article.pictures
+      }
 
-    //上传成功并跳转页面
-
-
-
-
-    //把图片上传到云存储
-    this.data.upData.contents_img.forEach((value, index) => {
-      // console.log("console"+this.data.upData.contents_img[i])
-      wx.showLoading({
-        title: '发表中',
-      })
-      wx.cloud.uploadFile({
-        cloudPath: "contents_img/" + year + "/" + month + "/" + day + "/" + new Date().getTime() + '.png',
-        filePath: value, // 文件路径
-      }).then(res => {
-
-        // get resource ID
-        console.log("fileID = ", res.fileID)
-        fileID_list.push(res.fileID);
-        console.log("lenth=", this.data.upData.contents_img.length)
-        if (fileID_list.length == this.data.upData.contents_img.length) {
-          wx.hideLoading();
-          wx.showToast({
-            title: '发表成功',
-          })
-         
-          this.data.upData.contents_img=fileID_list
-        
-
-          /**
-           * 把数据存到数据库
-           */
-          console.log("fileID_list= " + fileID_list)
-          console.log("data= " + this.data)
-          db.collection("user").add({
-            data: {
-              
-                dzsum: this.data.upData.dzsum,
-                likes: this.data.upData.likes,
-                plnum: this.data.upData.plnum,
-                title: this.data.upData.title,
-                user_head: app.globalData.user_head,
-                user_name: app.globalData.user_name,
-                contents: this.data.upData.contents,
-                contents_img: this.data.upData.contents_img,
-
-               
-
-            }
-          }).then(re => {
-            var pages = getCurrentPages() 
-            pages[pages.length -2 ].onLoad()  
-            console.log("res = " + re)
-            wx.switchTab({
-              url: '../index/index',
-            })
-
-          })
-
-        }
-      }).catch(error => {
-        // handle error
-      })
-
+    }).then(res => {
+      console.log(res);
     })
 
+    //await db.collection("")
+
   },
+
   onLoad: function (options) {
     let that = this
+    
+    article.pictures = [];
   },
   onShow: function (e) {
     var that = this;
@@ -111,23 +138,26 @@ Page({
           width: res.windowWidth,
         })
       },
-      fail: function (res) {},
-      complete: function (res) {},
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
   /**
    * 输入监听
    */
   inputCon: function (e) {
+    console.log('input_event', e);
     let that = this;
-    if (0 === e.currentTarget.id - 0) { //第一个文本框的输入监听
+    if ('text_title' === e.currentTarget.id) { //第一个文本框的输入监听
       that.data.firstCon = e.detail.value;
       that.data.upData.title = e.detail.value;
-
+      article.discussion_title = e.detail.value;
+     
     } else {
       // that.data.dataList[e.currentTarget.id - 1].value = e.detail.value;
-      that.data.upData.contents[e.currentTarget.id - 1]=e.detail.value;
-      console.log("contents"+that.data.upData.contents)
+      that.data.upData.contents = e.detail.value;
+      console.log("contents" + that.data.upData.contents)
+      article.contents = e.detail.value;
     }
     console.log(e.currentTarget.id)
     console.log(that.data.upData.contents);
@@ -154,8 +184,9 @@ Page({
         confirmText: "我知道了",
         confirmColor: "#ef8383",
         showCancel: false,
-        success: function (res) { ` awj `
-          if (res.confirm) {} else if (res.cancel) {}
+        success: function (res) {
+          ` awj `
+          if (res.confirm) { } else if (res.cancel) { }
         }
       })
     } else { //添加图片
@@ -177,7 +208,8 @@ Page({
                 }
                 that.data.dataList.splice(that.data.imgIndex, 0, info); //方法自行百度
                 that.data.upData.contents_img.splice(that.data.imgIndex, 0, info.pic);
-                console.log(that.data.upData.contents_img)
+                console.log("????这里？",that.data.upData.contents_img)
+                article.pictures.push(that.data.upData.contents_img);
                 that.setData({
                   dataList: that.data.dataList,
                 })
@@ -210,6 +242,7 @@ Page({
             that.data.dataList[index - 1].value = that.data.dataList[index - 1].value + that.data.dataList[index].value;
           }
           that.data.dataList.splice(index, 1);
+          article.pictures.splice(index, 1);
           that.setData({
             firstCon: that.data.firstCon,
             dataList: that.data.dataList
