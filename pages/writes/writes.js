@@ -24,87 +24,17 @@ Page({
       contents_img: []
     }
   },
-  //sub() {
-  //   let that = this
-  //   const today = new Date();
-  //   const year = today.getFullYear();
-  //   const month = today.getMonth() + 1;
-  //   const day = today.getDate();
-  //   const fileID_list = [];
-  //   //提示用户上传中
 
-  //   //上传成功并跳转页面
-
-  //   //把图片上传到云存储
-  //   this.data.upData.contents_img.forEach((value, index) => {
-  //     // console.log("console"+this.data.upData.contents_img[i])
-  //     wx.showLoading({
-  //       title: '发表中',
-  //     })
-  //     wx.cloud.uploadFile({
-  //       cloudPath: "contents_img/" + year + "/" + month + "/" + day + "/" + new Date().getTime() + '.png',
-  //       filePath: value, // 文件路径
-  //     }).then(res => {
-
-  //       // get resource ID
-  //       console.log("fileID = ", res.fileID)
-  //       fileID_list.push(res.fileID);
-  //       console.log("lenth=", this.data.upData.contents_img.length)
-  //       if (fileID_list.length == this.data.upData.contents_img.length) {
-  //         wx.hideLoading();
-  //         wx.showToast({
-  //           title: '发表成功',
-  //         })
-
-  //         this.data.upData.contents_img = fileID_list
-
-
-  //         /**
-  //          * 把数据存到数据库
-  //          */
-  //         console.log("fileID_list= " + fileID_list)
-  //         console.log("data= " + this.data)
-  //         db.collection("user").add({
-  //           data: {
-
-  //             dzsum: this.data.upData.dzsum,
-  //             likes: this.data.upData.likes,
-  //             plnum: this.data.upData.plnum,
-  //             title: this.data.upData.title,
-  //             user_head: app.globalData.user_head,
-  //             user_name: app.globalData.user_name,
-  //             contents: this.data.upData.contents,
-  //             contents_img: this.data.upData.contents_img,
-
-
-  //           }
-  //         }).then(re => {
-  //           var pages = getCurrentPages()
-  //           pages[pages.length - 2].onLoad()
-  //           console.log("res = " + re)
-  //           wx.switchTab({
-  //             url: '../index/index',
-  //           })
-
-  //         })
-
-  //       }
-  //     }).catch(error => {
-  //       // handle error
-  //     })
-
-  //   })
-
-  // },
   sub(){
-    this.update_user_data()
+    this.update_user_data();
+    // wx.navigateTo({
+    //   url: '/pages/dongtaicenter/dongtaicenter',
+    // })
   },
 
   async update_user_data() {
     user_info = app.globalData.user_info;
-    console.log("user_info:", user_info);
-    let that = this
-    let article_id = "";
+    if(user_info.article == undefined) user_info.article = [];
     await db.collection("user_discussion_data").add({
       data:
       {
@@ -117,6 +47,16 @@ Page({
 
     }).then(res => {
       console.log(res);
+      user_info.article.push(res._id)
+      app.globalData.newest_article = res._id;
+      db.collection("ide_user_info").where({
+        _openid:app.globalData.user_id
+      }).update({
+        data: {
+          article:user_info.article
+        },
+      }).then(res => {
+      })
     })
 
     //await db.collection("")

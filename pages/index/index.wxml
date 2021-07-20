@@ -84,10 +84,10 @@
                         <navigator class="contents_title shenglue shenglue1" url="/pages/dongtaicenter/dongtaicenter"
                           hover-class="other-navigator-hover">
                           <text>{{item.discussion_title}}</text></navigator>
-                        <navigator class="user_message" url="/pages/personal_center/personal_center">
+                        <view class="user_message">
                           <image class="user_head" src="{{item.avatar_url}}"></image>
                           <view class="user_name"><text>{{item.nick_name}}</text></view>
-                        </navigator>
+                        </view>
                         <navigator class="contents_text " url="/pages/dongtaicenter/dongtaicenter">
                           <text class=" shenglue shenglue2">{{item.contents}}</text></navigator>
                         <view class="contents_">

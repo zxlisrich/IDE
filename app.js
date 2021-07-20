@@ -60,6 +60,7 @@ App({
     user_info: {},
     user_id: '',
     openid: '',
+    newest_article:'',
     ColorList: [{
       title: '嫣红',
       name: 'red',

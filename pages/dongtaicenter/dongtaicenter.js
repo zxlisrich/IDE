@@ -1,5 +1,8 @@
 // pages/dongtaicenter/dongtaicenter.js
 const app = getApp()
+const db = wx.cloud.database();
+let article = {};
+let user_info = {};
 Page({
 
   /**
@@ -81,7 +84,7 @@ Page({
     })
 
   },
-  
+
   handleTabsItemChange(e){
     // console.log(e);
     const {index} = e.detail;
