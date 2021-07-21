@@ -74,21 +74,21 @@
             <!-- <view class="friends_dongtai">
           好友动态
         </view> -->
-            <view class="contents" wx:for="{{dongtai_data}}">
+            <view class="contents" wx:for="{{dongtai_data}}" wx:for-index = "i">
               <view class="dt_button">
                 <view class="page__bd">
                   <view class="weui-slidecells">
                     <mp-slideview extClass="{{true}}" class="slideview_" buttons="{{slideButtons}}" icon="{{true}}"
                       bindbuttontap="slideButtonTap">
                       <view class="weui-slidecell">
-                        <navigator class="contents_title shenglue shenglue1" url="/pages/dongtaicenter/dongtaicenter"
-                          hover-class="other-navigator-hover" bindtap="skiping">
+                        <navigator class="contents_title shenglue shenglue1" 
+                          hover-class="other-navigator-hover" bindtap="skiping" data-id = "{{item._id}}" >
                           <text>{{item.discussion_title}}</text>
                           <view class="user_message">
                             <image class="user_head" src="{{item.avatar_url}}"></image>
                             <view class="user_name"><text>{{item.nick_name}}</text></view>
                           </view>
-                          <view class="contents_text " url="/pages/dongtaicenter/dongtaicenter">
+                          <view class="contents_text " >
                             <text class=" shenglue shenglue2">{{item.contents}}</text></view>
                         </navigator>
                         <view class="contents_">

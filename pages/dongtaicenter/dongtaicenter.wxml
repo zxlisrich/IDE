@@ -24,7 +24,7 @@
       </view>
     </view>
     <view class="text-gray text-sm text-right padding">
-      <text class="cuIcon-attentionfill margin-lr-xs"></text> {{tabs[3].num}}
+      <text class="cuIcon-attentionfill margin-lr-xs"></text> {{contents.reading_num}}
       <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{tabs[1].num}}
       <text class="cuIcon-messagefill margin-lr-xs"></text> {{tabs[0].num}}
     </view>

@@ -189,11 +189,12 @@ Page({
   },
   onShow() {
     let that  = this;
-    
+    this.flushData();
   },
-  skiping(){
+  skiping(e){
+    console.log(e);
     wx.navigateTo({
-      url: '/pages/dongtaicenter/dongtaicenter?article_id='+this.data.dongtai_data._id,
+      url: '/pages/dongtaicenter/dongtaicenter?article_id='+e.currentTarget.dataset.id,
     })
   },
 

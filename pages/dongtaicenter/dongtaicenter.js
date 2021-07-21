@@ -51,7 +51,8 @@ Page({
       create_time:"",
       discussion_title:"",
       contents:"",
-      pictures:[]
+      pictures:[],
+      reading_num:0
      
     },
     StatusBar: app.globalData.StatusBar,
@@ -80,12 +81,8 @@ Page({
       console.log(res);
       let data = res.data[0];
       let contents = this.data.contents;
-      contents.nick_name = data.nick_name;
-      contents.avatar_url = data.avatar_url;
-      contents.discussion_title = data.discussion_title;
-      contents.contents = data.contents;
-      contents.create_time = data.create_time;
-      contents.pictures = data.pictures;
+      data.reading_num++;
+      contents = data;
       let{tabs}= that.data;
       tabs[0].num = data.comments.num;
       tabs[0].persons = data.comments.persons;
@@ -99,6 +96,11 @@ Page({
         tabs,
         contents
       })
+    })
+  },
+  onUnload: function () {
+    wx.navigateBack({
+      delta: 2,
     })
   },
 

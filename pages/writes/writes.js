@@ -40,6 +40,7 @@ Page({
     article.collections.num = 0;
     article.collections.persons = [];
     article.like.num = 0;
+    article.reading_num = 0;
     article.like.persons = [];
     article.comments.num = 0;
     article.comments.persons = [];
@@ -56,6 +57,7 @@ Page({
         collections: article.collections,
         like: article.like,
         comments: article.comments,
+        reading_num:article.reading_num
       }
 
     }).then(res => {
