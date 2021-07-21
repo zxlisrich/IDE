@@ -30,11 +30,19 @@ Page({
     this.update_user_data();
     
   },
-
   async update_user_data() {
     user_info = app.globalData.user_info;
     let time = util.formatTime(new Date());
     article.time = time;
+    article.collections = {};
+    article.like = {};
+    article.comments = {};
+    article.collections.num = 0;
+    article.collections.persons = [];
+    article.like.num = 0;
+    article.like.persons = [];
+    article.comments.num = 0;
+    article.comments.persons = [];
     if(user_info.article == undefined) user_info.article = [];
     await db.collection("user_discussion_data").add({
       data:
@@ -44,7 +52,10 @@ Page({
         discussion_title:article.discussion_title,
         contents:article.contents,
         pictures:article.pictures,
-        create_time:time
+        create_time:time,
+        collections: article.collections,
+        like: article.like,
+        comments: article.comments,
       }
 
     }).then(res => {
@@ -122,7 +133,7 @@ Page({
   addImg: function () {
     var that = this;
     //这里考虑到性能，对于图片张数做了限制
-    if (that.data.dataList.length >= 4) { //超过四张
+    if (that.data.dataList.length >= 6) { //超过四张
       wx.showModal({
         title: '提示',
         content: '最多只能添加四张图片哦',
@@ -154,7 +165,7 @@ Page({
                 that.data.dataList.splice(that.data.imgIndex, 0, info); //方法自行百度
                 that.data.upData.contents_img.splice(that.data.imgIndex, 0, info.pic);
                 console.log("????这里？",that.data.upData.contents_img)
-                article.pictures.push(that.data.upData.contents_img);
+                article.pictures = that.data.upData.contents_img;
                 that.setData({
                   dataList: that.data.dataList,
                 })

@@ -165,6 +165,7 @@ Page({
       showActionsheet: false
     })
   },
+  
   btnClick(e) {
     console.log(e)
     this.close()
@@ -190,6 +191,11 @@ Page({
     let that  = this;
     
   },
+  skiping(){
+    wx.navigateTo({
+      url: '/pages/dongtaicenter/dongtaicenter?article_id='+this.data.dongtai_data._id,
+    })
+  },
 
   handleTabsItemChange(e) {
     //console.log(e);
@@ -214,8 +220,9 @@ Page({
 
   flushData() {
 
-    db.collection("user_info").get().then(res => {
-
+    db.collection("ide_user_info").where({
+      _openid:app.globalData.user_id
+    }).get().then(res => {
       console.log("res123122S=", res)
       app.globalData.user_head = res.data[0].avatar_url
       app.globalData.user_name = res.data[0].nick_name
@@ -282,45 +289,5 @@ Page({
     app.loadFont()
 
   }
-
-  // ,
-  //   getList: function() {
-  //     wx.request({
-  //       url: '',
-  //       data: {},
-  //       header: "",
-  //       method: "GET",
-  //       success: function(res) {
-
-  //       }
-  //     })
-  //     // 隐藏loading提示框
-  //     wx.hideLoading()
-  //     // 隐藏导航条加载动画
-  //     wx.hideNavigationBarLoading()
-  //     //停止下拉刷新
-  //     wx.stopPullDownRefresh()
-  //   },
-  //   onLoad: function (options) {
-  //     this.openMap()
-  //   },
-  //   /**
-  //    * 刷新操作
-  //    */
-  //   onRefresh: function() {
-  //     // 导航条加载动画
-  //     wx.showNavigationBarLoading()
-  //     //loading提示框
-  //     wx.showLoading({
-  //       title: 'Loading...',
-  //     })
-  //     this.getList()
-  //   },
-  //   /**
-  //    * 页面相关事件处理函数--监听用户下拉动作
-  //    */
-  //   onPullDownRefresh: function() {
-  //     this.onRefresh()
-  //   }
 
 })

@@ -82,18 +82,19 @@
                       bindbuttontap="slideButtonTap">
                       <view class="weui-slidecell">
                         <navigator class="contents_title shenglue shenglue1" url="/pages/dongtaicenter/dongtaicenter"
-                          hover-class="other-navigator-hover">
-                          <text>{{item.discussion_title}}</text></navigator>
-                        <view class="user_message">
-                          <image class="user_head" src="{{item.avatar_url}}"></image>
-                          <view class="user_name"><text>{{item.nick_name}}</text></view>
-                        </view>
-                        <navigator class="contents_text " url="/pages/dongtaicenter/dongtaicenter">
-                          <text class=" shenglue shenglue2">{{item.contents}}</text></navigator>
+                          hover-class="other-navigator-hover" bindtap="skiping">
+                          <text>{{item.discussion_title}}</text>
+                          <view class="user_message">
+                            <image class="user_head" src="{{item.avatar_url}}"></image>
+                            <view class="user_name"><text>{{item.nick_name}}</text></view>
+                          </view>
+                          <view class="contents_text " url="/pages/dongtaicenter/dongtaicenter">
+                            <text class=" shenglue shenglue2">{{item.contents}}</text></view>
+                        </navigator>
                         <view class="contents_">
-                          <view style="margin: auto 20rpx">{{item.like_num}}点赞</view>
-                          <view style="margin-right: 20rpx">{{item.plnum}}评论</view>
-                          <view style="margin-right: 20rpx">{{item.collection_num}}收藏</view>
+                          <view style="margin: auto 20rpx">{{item.like.num}}点赞</view>
+                          <view style="margin-right: 20rpx">{{item.comments.num}}评论</view>
+                          <view style="margin-right: 20rpx">{{item.collections.num}}收藏</view>
                         </view>
                       </view>
                     </mp-slideview>
