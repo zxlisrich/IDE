@@ -24,12 +24,42 @@
       </view>
     </view>
     <view class="text-gray text-sm text-right padding">
-      <text class="cuIcon-likefill  {{contents.is_collection == true?'text-red':'text-gray'}} margin-lr-xs" bindtap="bottom_click" data-title="collection" ></text> {{tabs[3].num}}
-      <text class="cuIcon-appreciatefill  {{contents.is_like?'text-red':'text-gray'}} margin-lr-xs " bindtap="bottom_click" data-title="like"></text> {{tabs[1].num}}
-      <text class="cuIcon-messagefill margin-lr-xs"bindtap="bottom_click"  data-title="comment"></text> {{tabs[0].num}}
+      <text class="cuIcon-likefill  {{contents.is_collection == true?'text-red':'text-gray'}} margin-lr-xs"
+        bindtap="like_collection" data-title="collection"></text> {{tabs[3].num}}
+      <text class="cuIcon-appreciatefill  {{contents.is_like?'text-red':'text-gray'}} margin-lr-xs "
+        bindtap="like_collection" data-title="like"></text> {{tabs[1].num}}
+      <text class="cuIcon-messagefill margin-lr-xs" bindtap="showModal" data-target="bottomModal"></text>
+      {{tabs[0].num}}
       <text class="cuIcon-attentionfill margin-lr-xs"></text> {{contents.reading_num}}
     </view>
-
+    <!-- 评论输入框 -->
+    <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">  
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white">
+          <view class="action text-blue" bindtap="hideModal">取消</view>
+          <view class="action text-green" bindtap = "sub_comment">确定</view>
+        </view>
+        <view class="cu-form-group margin-top">
+          <textarea class='input_view' maxlength='-1' auto-height='true' bindinput='textareaAInput'
+            style='width:{{width-20}}px; margin-bottom:20rpx bg-grey' value='{{textareaAValue}}' placeholder='输入标题' bindblur="outBlur"
+            id='text_title' />
+          </view>
+      </view>
+    </view>
+    <!-- 回复输入框 -->
+    <view class="cu-modal bottom-modal {{modalName=='bottom_reply'?'show':''}}">  
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white">
+          <view class="action text-blue" bindtap="hideModal">取消</view>
+          <view class="action text-green" bindtap = "sub_comment_reply">确定</view>
+        </view>
+        <view class="cu-form-group margin-top">
+          <textarea class='input_view' maxlength='-1' auto-height='true' bindinput='textareaBInput'
+            style='width:{{width-20}}px; margin-bottom:20rpx bg-grey' value='{{textareaBValue}}' placeholder='输入标题' bindblur="outBlur"
+            id='text_title' />
+          </view>
+      </view>
+    </view>
   </view>
 </view>
 
@@ -40,26 +70,28 @@
   <Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange">
     <block wx:if="{{tabs[0].isActive}}">
       <view class="cu-list menu-avatar comment solids-top">
-        <view class="cu-item">
+        <view class="cu-item" wx:for="{{tabs[0].comments}}">
           <view class="cu-avatar round"
-            style="background-image:url(https://6465-dev-2gzxo1d2dc39c5e3-1305581356.tcb.qcloud.la/users/user_head_img_test/406ad122c12de86cdc0ac6c8407b895.jpg?sign=3961f23061f5ba724b5af9ba12ce33b2&t=1620802777);">
+            style="background-image:url({{item.avatar_url}});">
           </view>
           <view class="content">
-            <view class="text-grey">xixi</view>
+            <view class="text-grey">{{item.nick_name}}</view>
             <view class="text-gray text-content text-df">
-              好心疼你，dzw太过分了
+              {{item.contents}}
             </view>
-            <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
-              <view class="flex">
-                <view>烬烬：</view>
-                <view class="flex-sub">对的，一直在压榨你</view>
+            <view class="bg-grey padding-sm radius margin-top-sm  text-sm" >
+              <scroll-view style="heigth:100px">
+                <view class="flex" wx:for="{{item.reply}}" wx:for-item="reply_item" wx:for-index = "index">
+                <view>{{reply_item.nick_name+' : '}}</view>
+                <view class="flex-sub" style=" width:100%;display:block; text-overflow:ellipsis; word-wrap:break-word；">{{reply_item.contents}}</view>
               </view>
+              </scroll-view>
             </view>
             <view class="margin-top-sm flex justify-between">
-              <view class="text-gray text-df">2021年7月3日</view>
+              <view class="text-gray text-df">{{item.time}}</view>
               <view>
-                <text class="cuIcon-appreciatefill text-red"></text>
-                <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
+                <!-- <text class="cuIcon-appreciatefill text-red"></text> -->
+                <text class="cuIcon-messagefill text-gray margin-left-sm" bindtap="showModal" data-index = "{{index}}"data-target="bottom_reply" data-title = "reply" ></text>
               </view>
             </view>
           </view>

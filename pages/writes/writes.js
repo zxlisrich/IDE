@@ -23,7 +23,8 @@ Page({
       user_name: "",
       contents: '',
       contents_img: []
-    }
+    },
+    textareaAValue: '',
   },
 
   sub(){
@@ -34,16 +35,16 @@ Page({
     user_info = app.globalData.user_info;
     let time = util.formatTime(new Date());
     article.time = time;
-    article.collections = {};
-    article.like = {};
-    article.comments = {};
-    article.collections.num = 0;
-    article.collections.persons = [];
-    article.like.num = 0;
-    article.reading_num = 0;
-    article.like.persons = [];
-    article.comments.num = 0;
-    article.comments.persons = [];
+    article.collections = [];
+    article.like = [];
+    article.comments = [];
+    // article.collections.num = 0;
+    // article.collections.persons = [];
+    // article.like.num = 0;
+     article.reading_num = 0;
+    // article.like.persons = [];
+    // article.comments.num = 0;
+    // article.comments.persons = [];
     if(user_info.article == undefined) user_info.article = [];
     await db.collection("user_discussion_data").add({
       data:
@@ -62,6 +63,7 @@ Page({
 
     }).then(res => {
       console.log(res);
+      article_id = res._id;
       user_info.article.push(res._id)
       app.globalData.newest_article = res._id;
       db.collection("ide_user_info").where({
@@ -73,7 +75,7 @@ Page({
       }).then(res => {
       })
       wx.navigateTo({
-        url: '/pages/dongtaicenter/dongtaicenter?article_id='+res._id,
+        url: '/pages/dongtaicenter/dongtaicenter?article_id='+article_id,
       })
     })
 

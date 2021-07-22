@@ -167,7 +167,6 @@ Page({
   },
   
   btnClick(e) {
-    console.log(e)
     this.close()
   },
   open: function () {
@@ -176,7 +175,6 @@ Page({
     })
   },
   buttontap(e) {
-    console.log(e.detail)
   },
   // 事件处理函数
   onLoad: function () {
@@ -192,14 +190,12 @@ Page({
     this.flushData();
   },
   skiping(e){
-    console.log(e);
     wx.navigateTo({
       url: '/pages/dongtaicenter/dongtaicenter?article_id='+e.currentTarget.dataset.id,
     })
   },
 
   handleTabsItemChange(e) {
-    //console.log(e);
     const { index } = e.detail;
     let { tabs } = this.data;
     tabs.forEach((v, i) => i === index ? v.isActive = true : v.isActive = false);
@@ -208,7 +204,6 @@ Page({
     })
   },
   slideButtonTap(e) {
-    console.log('slide button tap', e.detail)
   },
   bindFocus: function () {
     wx.navigateTo({
@@ -224,7 +219,6 @@ Page({
     db.collection("ide_user_info").where({
       _openid:app.globalData.user_id
     }).get().then(res => {
-      console.log("res123122S=", res)
       app.globalData.user_head = res.data[0].avatar_url
       app.globalData.user_name = res.data[0].nick_name
       if (res.data.length != 0) {
@@ -241,8 +235,6 @@ Page({
     wx.cloud.callFunction({
       name: "dongtai_data"
     }).then(res => {
-      console.log("qwe")
-      console.log("getData res",res)
       _this.setData({
         dongtai_data: res.result.data
       })
