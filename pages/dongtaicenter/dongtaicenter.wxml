@@ -33,16 +33,16 @@
       <text class="cuIcon-attentionfill margin-lr-xs"></text> {{contents.reading_num}}
     </view>
     <!-- 评论输入框 -->
-    <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">  
+    <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
       <view class="cu-dialog">
         <view class="cu-bar bg-white">
           <view class="action text-blue" bindtap="hideModal">取消</view>
-          <view class="action text-green" bindtap = "sub_comment">确定</view>
+          <view class="action text-green" bindtap="sub_comment">确定</view>
         </view>
         <view class="cu-form-group margin-top">
           <textarea class='input_view' maxlength='-1' auto-height='true' bindinput='textareaAInput'
-            style='width:{{width-20}}px; margin-bottom:20rpx bg-grey' value='{{textareaAValue}}' placeholder='输入标题' bindblur="outBlur"
-            id='text_title' />
+            style='width:{{width-20}}px; margin-bottom:20rpx bg-grey' value='{{textareaAValue}}' placeholder='输入评论'
+            bindblur="outBlur" id='text_title' />
           </view>
       </view>
     </view>
@@ -55,7 +55,7 @@
         </view>
         <view class="cu-form-group margin-top">
           <textarea class='input_view' maxlength='-1' auto-height='true' bindinput='textareaBInput'
-            style='width:{{width-20}}px; margin-bottom:20rpx bg-grey' value='{{textareaBValue}}' placeholder='输入标题' bindblur="outBlur"
+            style='width:{{width-20}}px; margin-bottom:20rpx bg-grey' value='{{textareaBValue}}' placeholder='输入回复' bindblur="outBlur"
             id='text_title' />
           </view>
       </view>
@@ -102,7 +102,33 @@
 
 
     </block>
-    <block wx:elif="{{tabs[1].isActive}}">1</block>
-    <block wx:elif="{{tabs[2].isActive}}">2</block>
+    <block wx:elif="{{tabs[1].isActive}}">
+    <view class="cu-list menu-avatar">
+      <view class="cu-item " wx:for="{{tabs[1].likes}}"  wx:key  >
+      <view class="cu-avatar round lg" style="background-image:url({{item.avatar_url}});"></view>
+      <view class="content">
+        <view class="text-grey">{{item.nick_name}}</view>
+      <view class="action">
+        <view class="text-grey text-xs">{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+      </view>
+    </block>
+    <block wx:elif="{{tabs[2].isActive}}">
+    </block>
+    <block wx:elif="{{tabs[3].isActive}}">
+      <view class="cu-list menu-avatar">
+      <view class="cu-item " wx:for="{{tabs[3].collections}}"  wx:key  >
+      <view class="cu-avatar round lg" style="background-image:url({{item.avatar_url}});"></view>
+      <view class="content">
+        <view class="text-grey">{{item.nick_name}}</view>
+      <view class="action">
+        <view class="text-grey text-xs">{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+      </view>
+    </block>
   </Tabs>
 </view>

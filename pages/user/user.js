@@ -8,7 +8,6 @@ Page({
     avatar_url: '',
     isLogin: false,
   },
-
    onLoad: function () {
     user_info = app.globalData.user_info;
     this.set_data();

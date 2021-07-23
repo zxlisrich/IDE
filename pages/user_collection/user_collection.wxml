@@ -1,18 +1,14 @@
 <view class="collection">
-  <view class="cart">
-    <view class="title shenglue  shenglue1">啦啦啦</view>
-    <view class="contents shenglue  shenglue1">又来煽风点火尽快发货时间开发商开发回复是否是会计分录实际付款了就流口水的份撒旦解放螺丝扣的房间两手空空是得分纪录时刻提防双方距离喀什酱豆腐杀了对方就</view>
-    <view class="foots">
-      <view class="type">文章</view>
-      <view class="author_name">好的</view>
-    </view>
-  </view>
-  <view class="cart">
-    <view class="title shenglue  shenglue1">啦啦啦</view>
-    <view class="contents shenglue  shenglue1">又来煽风点火尽快发货时间开发商开发回复是否是会计分录实际付款了就流口水的份撒旦解放螺丝扣的房间两手空空是得分纪录时刻提防双方距离喀什酱豆腐杀了对方就</view>
-    <view class="foots">
-      <view class="type">文章</view>
-      <view class="author_name">好的</view>
+  <view class="cart" wx:for="{{article}}">
+    <view class="title shenglue  shenglue1">{{item.discussion_title}}</view>
+    <view class="contents shenglue  shenglue1">
+      {{item.contents}}</view>
+      <view class="text-gray text-sm text-right padding">
+      <text class="cuIcon-likefill  margin-lr-xs"></text> {{item.collections.length}}
+      <text class="cuIcon-appreciatefill  margin-lr-xs "></text> {{item.like.length}}
+      <text class="cuIcon-messagefill margin-lr-xs"></text>
+      {{item.reading_num}}
+      <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.comments.length}}
     </view>
   </view>
 </view>

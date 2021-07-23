@@ -38,6 +38,7 @@ Page({
     article.collections = [];
     article.like = [];
     article.comments = [];
+    article.createTime = db.serverDate()
     // article.collections.num = 0;
     // article.collections.persons = [];
     // article.like.num = 0;
@@ -58,7 +59,8 @@ Page({
         collections: article.collections,
         like: article.like,
         comments: article.comments,
-        reading_num:article.reading_num
+        reading_num:article.reading_num,
+        createTime:article.createTime
       }
 
     }).then(res => {

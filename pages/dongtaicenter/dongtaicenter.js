@@ -66,9 +66,12 @@ Page({
   },
 
   like_collection(e) {
+    let t = temp;
+    let time = util.formatTime(new Date());
     let contents = this.data.contents;
     let tabs = this.data.tabs;
     let value = e.currentTarget.dataset.title;
+    t.time = time;
     if (value == 'like') {
       contents.is_like = !contents.is_like;
       if (!contents.is_like) {
@@ -77,7 +80,7 @@ Page({
         let index_u = (user_info.like_articles || []).findIndex((item) => item == article_id);  //同上
         user_info.like_articles.splice(index_u, 1);
       } else {
-        tabs[1].likes.push(temp);
+        tabs[1].likes.push(t);
         user_info.like_articles.push(contents._id);
       }
 
@@ -90,7 +93,7 @@ Page({
         let index_u = (user_info.collection_article || []).findIndex((item) => item == article_id);  //同上
         user_info.collection_article.splice(index_u, 1);
       } else {
-        tabs[3].collections.push(temp);
+        tabs[3].collections.push(t);
         user_info.collection_article.push(contents._id);
       }
     }
@@ -100,6 +103,7 @@ Page({
     })
     this.onLoad();
     this.update_article_data();
+    this.update_user_data();
 
   },
   isCard(e) {
@@ -132,7 +136,6 @@ Page({
     })
   },
   sub_comment() {
-    
     let t = temp;  //获取评论者的用户信息
     let tabs = this.data.tabs;
     let time = util.formatTime(new Date());
@@ -152,19 +155,11 @@ Page({
   sub_comment_reply(){
     console.log("reply1",reply_index);
     let t = temp;  //获取评论者的用户信息
-    let tabs = this.data.tabs;
-    let reply = tabs[0].comments[reply_index].reply;
+    let tabs = JSON.parse(JSON.stringify(this.data.tabs));
     let time = util.formatTime(new Date());
     t.time = time;
     t.contents = this.data.textareaBValue;//将评论内容赋值给tabs
-    for(let i = 0; i<reply.length+1; i++){
-      let obj = {}
-      if(reply[i] == undefined){
-        obj = t;
-        reply.push(t);
-      }
-    }
-    tabs[0].comments[reply_index].reply = reply;
+    tabs[0].comments[reply_index].reply.push(t);
     this.setData({
       textareaBValue: '',
       tabs
@@ -207,6 +202,7 @@ Page({
     app.loadFont();
     let { tabs } = this.data;
     console.log("tabs",this.data.tabs);
+    console.log(app.globalData.user_info);
     let time = util.formatTime(new Date());
     if (options != undefined) {
       article_id = options.article_id;
@@ -214,6 +210,7 @@ Page({
       temp.avatar_url = user_info.avatar_url;
       temp.nick_name = user_info.nick_name;
       temp.time = time;
+      console.log(temp);
       if (user_info.history_article == undefined) user_info.history_article = []
       user_info.history_article.unshift(article_id);
       if (user_info.like_articles == undefined) user_info.like_articles = [];   //初始化点赞数组
@@ -267,6 +264,7 @@ Page({
     })
   },
   onUnload: function () {   //退出页面返回首页
+    app.globalData.user_info = user_info
     this.update_user_data();
     app.globalData.user_info = user_info;
     wx.navigateBack({

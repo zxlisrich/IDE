@@ -5,12 +5,32 @@ const db = wx.cloud.database();
 let user_info = app.globalData.user_info;
 Page({
   data: {
-    article:{}
+    article:[]
   },
 
-  onLoad: function (options) {
-    let user_info = app.globalData.user_info;
-    
+
+  onLoad: function () {
+    user_info = app.globalData.user_info;
+    console.log(user_info);
+    this.get_data()
+  },
+
+  async get_data() {
+    let temp = user_info.history_article;
+    let article = []
+    for(let i = 0; i<temp.length; i++){
+      await db.collection("user_discussion_data").where({ _id: temp[i] }).get().then(res => {
+        console.log(temp[i],res);
+        let obj_a = {}
+        obj_a =  res.data[0];
+        if(obj_a != null) article.push(obj_a);
+    })
+
+    }
+    this.setData({
+      article
+    })
+
   },
 
   

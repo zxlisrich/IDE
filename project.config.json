@@ -53,6 +53,7 @@
   },
   "isGameTourist": false,
   "cloudfunctionRoot": "cloudfunctions/",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {
       "list": []
